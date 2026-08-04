@@ -1,0 +1,193 @@
+{
+  "Home": {
+    "hero": {
+      "badge": "مرحبًا بكم في متجرنا",
+      "title": "ملابس تحافظ على شكلها.",
+      "description": "تصاميم مدروسة بخامات أصلية — صُممت لتُرتدى لعقدٍ كامل، لا لموسم واحد.",
+      "shopCollection": "تسوق المجموعة",
+      "newArrivals": "وصل حديثًا",
+      "heroImageAlt": "عارضة ترتدي سترة رسمية"
+    },
+    "categories": {
+      "title": "تسوق حسب الفئة"
+    },
+    "newArrivals": {
+      "title": "وصل حديثًا",
+      "viewAll": "عرض الكل"
+    },
+    "editorial": {
+      "badge": "حِرفتنا",
+      "title": "قطع أقل. جودة أعلى.",
+      "description": "تبدأ كل قطعة بالقماش، الذي يتم تصنيعه لدى شركائنا المختارين بعناية في إيطاليا والبرتغال، وتنتهي بفحص دقيق لكل غرزة قبل مغادرتها المشغل.",
+      "button": "استكشف المجموعة",
+      "imageAlt": "تفاصيل قماش بنطال مُفصل بعناية"
+    },
+    "featured": {
+      "title": "الأساسيات المختارة بعناية",
+      "viewAll": "عرض الكل"
+    }
+  },
+  "Header": {
+    "logo": "متجر خليفة",
+    "shop": "المتجر",
+    "newArrivals": "وصل حديثًا",
+    "account": "الحساب",
+    "signIn": "تسجيل الدخول",
+    "cart": "سلة التسوق",
+    "wishlist": "المفضلة",
+    "toggleMenu": "فتح القائمة"
+  },
+  "Footer": {
+    "brand": "متجر خليفة",
+    "description": "ملابس مصممة بعناية، مصنوعة من خامات أصلية، لتدوم لسنوات طويلة بدلًا من موسم واحد.",
+
+    "shop": "المتجر",
+    "company": "الشركة",
+    "support": "الدعم",
+
+    "products": "المنتجات",
+    "newArrivals": "وصل حديثًا",
+    "bestSellers": "الأكثر مبيعًا",
+    "sale": "التخفيضات",
+
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "careers": "الوظائف",
+
+    "faq": "الأسئلة الشائعة",
+    "shipping": "الشحن",
+    "returns": "الاسترجاع"
+  },
+  "Products": {
+    "title": {
+      "all": "جميع المنتجات"
+    },
+    "count": {
+      "one": "{count} قطعة",
+      "other": "{count} قطع"
+    },
+    "sort": {
+      "featured": "الأكثر تميزًا",
+      "priceAsc": "السعر: من الأقل إلى الأعلى",
+      "priceDesc": "السعر: من الأعلى إلى الأقل",
+      "name": "الاسم: أ إلى ي"
+    },
+    "empty": {
+      "title": "لا توجد منتجات هنا بعد.",
+      "description": "جرّب تصنيفًا آخر."
+    }
+  },
+  "categories": {
+    "all": "الكل",
+    "new": "الجديد",
+    "outerwear": "ملابس خارجية",
+    "dresses": "فساتين",
+    "knitwear": "ملابس محبوكة",
+    "trousers": "بناطيل",
+    "shirts": "قمصان",
+    "accessories": "إكسسوارات",
+    "footwear": "أحذية"
+  },
+  "sortOptions": {
+    "featured": "مميز",
+    "priceAsc": "السعر: من الأقل إلى الأعلى",
+    "priceDesc": "السعر: من الأعلى إلى الأقل",
+    "name": "الاسم: أ–ي"
+  },
+  "ProductItem": {
+    "new": "جديد",
+    "addToWishlist": "أضف إلى المفضلة",
+    "quickView": "عرض سريع"
+  },
+  "Cart": {
+    "emptyTitle": "سلة التسوق فارغة.",
+    "emptyDescription": "تصفح المجموعة وابحث عن شيء لإضافته.",
+    "shopCollection": "تسوق المجموعة",
+    "title": "سلة التسوق",
+    "decreaseQuantity": "تقليل الكمية",
+    "increaseQuantity": "زيادة الكمية",
+    "remove": "إزالة",
+    "orderSummary": "ملخص الطلب",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "الشحن",
+    "calculatedAtCheckout": "يُحسب عند الدفع",
+    "total": "الإجمالي",
+    "checkout": "إتمام الشراء",
+    "continueShopping": "متابعة التسوق",
+    "size": "المقاس"
+  },
+  "Wishlist": {
+    "emptyTitle": "قائمة الأمنيات فارغة.",
+    "emptyDescription": "احفظ القطع التي تحبها للعثور عليها هنا لاحقًا.",
+    "shopCollection": "تسوق المجموعة",
+    "title": "قائمة الأمنيات",
+    "piece": "قطعة",
+    "pieces": "قطع",
+    "saved": "محفوظة",
+    "clearAll": "مسح الكل",
+    "removeFromWishlist": "إزالة من قائمة الأمنيات",
+    "moveToCart": "نقل إلى السلة"
+  },
+  "Product": {
+    "notFound": "المنتج غير موجود.",
+    "backToShop": "العودة للتسوق",
+    "home": "الرئيسية",
+    "shop": "المتجر",
+    "color": "اللون",
+    "size": "المقاس",
+    "sizeGuide": "دليل المقاسات",
+    "decreaseQuantity": "تقليل الكمية",
+    "increaseQuantity": "زيادة الكمية",
+    "added": "تمت الإضافة ✓",
+    "addToCart": "أضف إلى السلة",
+    "buyNow": "شراء الآن",
+    "detailsCare": "التفاصيل والعناية",
+    "youMayAlsoLike": "قد يعجبك أيضاً",
+    "selectSize": "يرجى اختيار المقاس."
+  },
+  "Checkout": {
+    "cartEmpty": "سلة التسوق فارغة.",
+    "addBeforeCheckout": "أضف شيئاً قبل إتمام الطلب.",
+    "shopCollection": "تسوق المجموعة",
+
+    "title": "إتمام الطلب",
+
+    "steps": {
+      "shipping": "الشحن",
+      "payment": "الدفع",
+      "review": "المراجعة"
+    },
+
+    "shippingAddress": "عنوان الشحن",
+    "paymentDetails": "تفاصيل الدفع",
+    "reviewOrder": "مراجعة طلبك",
+
+    "fullName": "الاسم الكامل",
+    "phone": "رقم الهاتف",
+    "address": "العنوان",
+    "city": "المدينة",
+    "postalCode": "الرمز البريدي",
+    "country": "الدولة",
+
+    "nameOnCard": "الاسم على البطاقة",
+    "cardNumber": "رقم البطاقة",
+    "expiry": "تاريخ الانتهاء",
+    "cvc": "الرقم السري",
+
+    "demoPayment": "هذا نموذج تجريبي للدفع — لا يتم تنفيذ أي عملية دفع حقيقية.",
+
+    "size": "المقاس",
+    "qty": "الكمية",
+
+    "back": "رجوع",
+    "continue": "متابعة",
+    "placingOrder": "جاري تأكيد الطلب...",
+    "placeOrder": "تأكيد الطلب",
+
+    "orderSummary": "ملخص الطلب",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "الشحن",
+    "free": "مجاني",
+    "total": "الإجمالي"
+  }
+}

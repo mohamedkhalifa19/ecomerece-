@@ -1,0 +1,193 @@
+{
+  "Home": {
+    "hero": {
+      "badge": "Welcome to our store",
+      "title": "Clothing that holds its shape.",
+      "description": "Considered silhouettes cut from honest materials — designed to be worn for a decade, not a season.",
+      "shopCollection": "Shop the Collection",
+      "newArrivals": "New Arrivals",
+      "heroImageAlt": "Model wearing a tailored blazer"
+    },
+    "categories": {
+      "title": "Shop by Category"
+    },
+    "newArrivals": {
+      "title": "New Arrivals",
+      "viewAll": "View all"
+    },
+    "editorial": {
+      "badge": "Our Craft",
+      "title": "Fewer pieces. Made properly.",
+      "description": "Every garment starts with the fabric — milled by hand-picked partners across Italy and Portugal — and ends with a person who inspects every seam before it leaves the atelier.",
+      "button": "Explore the Collection",
+      "imageAlt": "Detail of a tailored trouser fabric"
+    },
+    "featured": {
+      "title": "Considered Essentials",
+      "viewAll": "View all"
+    }
+  },
+  "Header": {
+    "logo": "Khalifa Store",
+    "shop": "Shop",
+    "newArrivals": "New Arrivals",
+    "account": "Account",
+    "signIn": "Sign In",
+    "cart": "Cart",
+    "wishlist": "Wishlist",
+    "toggleMenu": "Toggle menu"
+  },
+  "Footer": {
+    "brand": "Khalifa Store",
+    "description": "Considered clothing, cut from honest materials, made to be worn for a decade rather than a season.",
+
+    "shop": "Shop",
+    "company": "Company",
+    "support": "Support",
+
+    "products": "Products",
+    "newArrivals": "New Arrivals",
+    "bestSellers": "Best Sellers",
+    "sale": "Sale",
+
+    "about": "About Us",
+    "contact": "Contact",
+    "careers": "Careers",
+
+    "faq": "FAQ",
+    "shipping": "Shipping",
+    "returns": "Returns"
+  },
+  "Products": {
+    "title": {
+      "all": "All Products"
+    },
+    "count": {
+      "one": "{count} piece",
+      "other": "{count} pieces"
+    },
+    "sort": {
+      "featured": "Featured",
+      "priceAsc": "Price: Low to High",
+      "priceDesc": "Price: High to Low",
+      "name": "Name: A–Z"
+    },
+    "empty": {
+      "title": "Nothing here yet.",
+      "description": "Try a different category."
+    }
+  },
+  "categories": {
+    "all": "All",
+    "new": "New",
+    "outerwear": "Outerwear",
+    "dresses": "Dresses",
+    "knitwear": "Knitwear",
+    "trousers": "Trousers",
+    "shirts": "Shirts",
+    "accessories": "Accessories",
+    "footwear": "Footwear"
+  },
+  "sortOptions": {
+    "featured": "Featured",
+    "priceAsc": "Price: Low to High",
+    "priceDesc": "Price: High to Low",
+    "name": "Name: A–Z"
+  },
+  "ProductItem": {
+    "new": "New",
+    "addToWishlist": "Add to wishlist",
+    "quickView": "Quick view"
+  },
+  "Cart": {
+    "emptyTitle": "Your cart is empty.",
+    "emptyDescription": "Explore the collection and find something to add.",
+    "shopCollection": "Shop the Collection",
+    "title": "Your Cart",
+    "decreaseQuantity": "Decrease quantity",
+    "increaseQuantity": "Increase quantity",
+    "remove": "Remove",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "calculatedAtCheckout": "Calculated at checkout",
+    "total": "Total",
+    "checkout": "Checkout",
+    "continueShopping": "Continue Shopping",
+    "size": "Size"
+  },
+  "Wishlist": {
+    "emptyTitle": "Your wishlist is empty.",
+    "emptyDescription": "Save pieces you love to find them here later.",
+    "shopCollection": "Shop the Collection",
+    "title": "Wishlist",
+    "piece": "piece",
+    "pieces": "pieces",
+    "saved": "saved",
+    "clearAll": "Clear all",
+    "removeFromWishlist": "Remove from wishlist",
+    "moveToCart": "Move to Cart"
+  },
+  "Product": {
+    "notFound": "Product not found.",
+    "backToShop": "Back to Shop",
+    "home": "Home",
+    "shop": "Shop",
+    "color": "Color",
+    "size": "Size",
+    "sizeGuide": "Size Guide",
+    "decreaseQuantity": "Decrease quantity",
+    "increaseQuantity": "Increase quantity",
+    "added": "Added ✓",
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "detailsCare": "Details & Care",
+    "youMayAlsoLike": "You May Also Like",
+    "selectSize": "Please select a size."
+  },
+  "Checkout": {
+    "cartEmpty": "Your cart is empty.",
+    "addBeforeCheckout": "Add something before checking out.",
+    "shopCollection": "Shop the Collection",
+
+    "title": "Checkout",
+
+    "steps": {
+      "shipping": "Shipping",
+      "payment": "Payment",
+      "review": "Review"
+    },
+
+    "shippingAddress": "Shipping Address",
+    "paymentDetails": "Payment Details",
+    "reviewOrder": "Review Your Order",
+
+    "fullName": "Full Name",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "postalCode": "Postal Code",
+    "country": "Country",
+
+    "nameOnCard": "Name on Card",
+    "cardNumber": "Card Number",
+    "expiry": "Expiry",
+    "cvc": "CVC",
+
+    "demoPayment": "This is a demo checkout — no real payment is processed.",
+
+    "size": "Size",
+    "qty": "Qty",
+
+    "back": "Back",
+    "continue": "Continue",
+    "placingOrder": "Placing Order...",
+    "placeOrder": "Place Order",
+
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "free": "Free",
+    "total": "Total"
+  }
+}
