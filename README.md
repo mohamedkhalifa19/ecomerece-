@@ -1,4 +1,4 @@
-# Maison Éthérée — Ethereal Editorial E-commerce
+# Khalifa store - ecomerece website (AR/EN)
 
 A Next.js 16 (App Router) e-commerce storefront built to the **Ethereal Editorial** design system — pure black/white minimalism, Plus Jakarta Sans headlines, Inter body text, 8px spacing rhythm, and 12px "squircle" corners throughout.
 
