@@ -1,4 +1,4 @@
-import { Order, PrismaOrderWithRelations } from "./types";
+import { Item, Order, PrismaOrderWithRelations } from "./types";
 
 export function formatDate(date: string, locale: "en" | "ar"): string {
   const months = {
@@ -44,7 +44,7 @@ export const formattedOrders = (
     date: order.createdAt.toISOString(),
     status: order.status,
 
-    items: order.items.map((item) => ({
+    items: order.items.map((item:Item) => ({
       productId: item.productId,
       name: item.name,
       size: item.size,
