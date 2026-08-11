@@ -7,6 +7,7 @@ import { getLocale } from "next-intl/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "./prisma";
+import { Item } from "./types";
 
 export async function login(formData: FormData): Promise<void> {
   const supabase = await createClient();
@@ -232,7 +233,7 @@ export async function createOrder(data: CreateOrderData) {
       },
 
       items: {
-        create: data.items.map((item) => ({
+        create: data.items.map((item:Item) => ({
           productId: item.productId,
           name: item.name,
           size: item.size,

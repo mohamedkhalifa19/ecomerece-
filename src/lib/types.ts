@@ -55,19 +55,20 @@ export type Address = {
   country: string;
   phone: string;
 };
+export type Item = {
+  productId: string;
+  name: string;
+  size: string;
+  color: string;
+  quantity: number;
+  price: number;
+  image: string;
+};
 export type Order = {
   id: string;
   date: string;
   status: "Processing" | "Shipped" | "Delivered";
-  items: {
-    productId: string;
-    name: string;
-    size: string;
-    color: string;
-    quantity: number;
-    price: number;
-    image: string;
-  }[];
+  items: Item[];
   total: number;
   address: Address | null;
 };
