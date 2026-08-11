@@ -1,4 +1,4 @@
-import { Prisma } from "../generated/prisma";
+import type { Prisma } from "../generated/prisma/index";
 export type LocalizedText = {
   en: string;
   ar: string;
