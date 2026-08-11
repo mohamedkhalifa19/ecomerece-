@@ -15,27 +15,27 @@ import { routing } from "@/i18n/routing";
 import { Toaster } from "@/components/ui/sonner";
 import ConnectionStatus from "@/components/ConnectionStatus";
 
-// const plusJakarta = Plus_Jakarta_Sans({
-//   variable: "--font-plus-jakarta",
-//   subsets: ["latin"],
-//   weight: ["500", "600", "700"],
-// });
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
 
-// const inter = Inter({
-//   variable: "--font-inter",
-//   subsets: ["latin"],
-//   weight: ["400", "500", "600"],
-// });
-// const cairo = Cairo({
-//   variable: "--font-cairo",
-//   subsets: ["latin", "arabic"],
-//   weight: ["400", "500", "600"],
-// });
-// export const metadata: Metadata = {
-//   title: "Khalifa store",
-//   description:
-//     "A premium, editorial e-commerce experience: considered clothing cut from honest materials.",
-// };
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["latin", "arabic"],
+  weight: ["400", "500", "600"],
+});
+export const metadata: Metadata = {
+  title: "Khalifa store",
+  description:
+    "A premium, editorial e-commerce experience: considered clothing cut from honest materials.",
+};
 
 export default async function RootLayout({
   children,
@@ -56,7 +56,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body
-        className={` antialiased ${locale === "ar" && "font-cairo!"}`}
+        className={`${plusJakarta.className} ${inter.className} ${cairo.variable}  antialiased ${locale === "ar" && "font-cairo!"}`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           {" "}
