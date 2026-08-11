@@ -11,6 +11,7 @@ function Register() {
   const t = useTranslations("Login");
   const t2 = useTranslations("auth");
   const t3 = useTranslations("ResetPassword");
+  const t4 = useTranslations("errors");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -23,8 +24,11 @@ function Register() {
       setError(t3("passwordsDoNotMatch"));
       return;
     }
-    const { requiresEmailConfirmation } = await register(formData);
-
+    const { requiresEmailConfirmation, error } = await register(formData);
+    if (error) {
+      setError(t4(error));
+      return;
+    }
     if (requiresEmailConfirmation) {
       toast(
         <h1
@@ -69,7 +73,6 @@ function Register() {
         placeholder={t("fields.confirmPasswordPlaceholder")}
         minLength={4}
       />
-      {error && <p className="text-sm text-red-600">{error}</p>}
 
       <Field
         label={t("fields.address")}
@@ -77,6 +80,7 @@ function Register() {
         type="text"
         placeholder={t("fields.addressPlaceholder")}
       />
+      {error && <p className="text-sm text-red-600">{error}</p>}
 
       <Button type="submit" className="w-full mt-2">
         {t("register.button")}

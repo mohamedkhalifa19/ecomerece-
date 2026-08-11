@@ -465,6 +465,8 @@
     "weakPassword": "Password is too weak.",
     "emailRateLimitExceeded": "Too many emails have been sent. Please try again later.",
     "somethingWentWrong": "Something went wrong.",
+    "passwordTooShort": "Password is too short",
+
     "emailNotFound": "No account exists with this email."
   },
   "auth": {

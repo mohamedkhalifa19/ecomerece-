@@ -4,12 +4,21 @@ import Field from "./Feild";
 import Button from "./Button";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { useState } from "react";
 
 function Login() {
   const t = useTranslations("Login");
+  const t2 = useTranslations("errors");
 
+  const [error, setError] = useState("");
+  const handelLogin = async (formData: FormData) => {
+    const result = await login(formData);
+    if (!result.success) {
+      setError(t2(result.error));
+    }
+  };
   return (
-    <form action={login} className="mt-8 flex flex-col gap-5">
+    <form action={handelLogin} className="mt-8 flex flex-col gap-5">
       <Field
         label={t("fields.email")}
         name="email"
@@ -33,6 +42,7 @@ function Login() {
           {t("forgotPassword")}
         </Link>
       </div>
+      {error && <p className="text-sm text-red-600">{error}</p>}
 
       <Button type="submit" className="w-full mt-2">
         {t("login.button")}

@@ -2,7 +2,6 @@ import { LoginError, RegisterError } from "@/lib/types";
 
 export function mapLoginError(message: string): LoginError {
   const error = message.toLowerCase();
-  console.log(error);
   if (error.includes("emailnotfound")) {
     return "emailNotFound";
   }
@@ -29,6 +28,7 @@ export function mapRegisterError(message: string): RegisterError {
     error.includes("already registered") ||
     error.includes("already exists")
   ) {
+    console.log("i am here");
     return "emailAlreadyRegistered";
   }
 
@@ -42,7 +42,7 @@ export function mapRegisterError(message: string): RegisterError {
   if (
     error.includes("password should be at least") ||
     error.includes("password must") ||
-    error.includes("password is too short")
+    error.includes("passwordTooShort")
   ) {
     return "weakPassword";
   }

@@ -7,9 +7,9 @@ import { getLocale } from "next-intl/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "./prisma";
-import { Item } from "./types";
+import { Item, LoginResult } from "./types";
 
-export async function login(formData: FormData): Promise<void> {
+export async function login(formData: FormData): Promise<LoginResult> {
   const supabase = await createClient();
   const lang = await getLocale();
   const email = String(formData.get("email") ?? "");
@@ -20,7 +20,7 @@ export async function login(formData: FormData): Promise<void> {
     password,
   });
   if (error) {
-    throw new Error(mapLoginError(error.message));
+    return { success: false, error: mapLoginError(error.message) };
   }
   revalidatePath(`/${lang}/account`);
 
@@ -55,10 +55,16 @@ export async function register(formData: FormData) {
   const exists = await userExists(email);
 
   if (exists) {
-    throw new Error(mapRegisterError("emailAlreadyRegistered"));
+    return {
+      success: false,
+      error: mapRegisterError("emailAlreadyRegistered"),
+    };
   }
   if (error) {
-    throw new Error(mapRegisterError(error.message));
+    return {
+      success: false,
+      error: mapRegisterError(error.message),
+    };
   }
 
   // Email confirmation is required
@@ -162,10 +168,10 @@ export async function resetPassword(email: string) {
   });
   const exists = await userExists(email);
   if (!exists) {
-    throw new Error("emailNotFound");
+    return { error: "emailNotFound" };
   }
   if (error) {
-    throw new Error(error.message);
+    return { error: error.message };
   }
 }
 export async function updatePassword(password: string) {
@@ -176,7 +182,7 @@ export async function updatePassword(password: string) {
   });
 
   if (error) {
-    throw new Error(error.message);
+    return { error: error.message };
   }
   redirect(`/${locale}/login`);
 }
@@ -214,7 +220,6 @@ export async function createOrder(data: CreateOrderData) {
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) return;
-  console.log(user);
   const order = await prisma.order.create({
     data: {
       total: data.total,

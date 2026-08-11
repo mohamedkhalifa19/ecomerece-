@@ -465,6 +465,8 @@
     "weakPassword": "كلمة المرور ضعيفة.",
     "emailRateLimitExceeded": "تم إرسال عدد كبير جدًا من رسائل البريد الإلكتروني. يرجى المحاولة لاحقًا.",
     "somethingWentWrong": "حدث خطأ ما.",
+    "passwordTooShort": "كلمة المرور قصيرة جدًا",
+
     "emailNotFound": "لا يوجد حساب مرتبط بهذا البريد الإلكتروني."
   },
   "auth": {

@@ -9,6 +9,15 @@ export type Category = {
   name: LocalizedText;
   image: string;
 };
+export type LoginResult =
+  | {
+      success: true;
+    }
+  | {
+      success: false;
+      error: LoginError;
+    };
+
 export type CategoryKey =
   | "all"
   | "new"
@@ -98,14 +107,14 @@ export type LoginError =
   | "emailNotConfirmed"
   | "tooManyRequests"
   | "unableToLogin"
-  | "emailNotFound";
+  | "emailNotFound"
+  | "somethingWentWrong";
+
 export type RegisterError =
+  | "unableToCreateAccount"
   | "emailAlreadyRegistered"
   | "invalidEmail"
   | "weakPassword"
   | "emailRateLimitExceeded"
   | "passwordTooShort"
-  | "invalidCredentials"
-  | "userAlreadyExists"
-  | "networkError"
-  | "unableToCreateAccount";
+  | "somethingWentWrong";
