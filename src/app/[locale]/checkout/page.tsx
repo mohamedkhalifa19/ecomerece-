@@ -147,8 +147,7 @@ export default function CheckoutPage() {
       });
 
       clearCart();
-
-      router.push(`/${locale}/orders/${order.id}?placed=1`);
+      if (order) router.push(`/${locale}/orders/${order.id}?placed=1`);
     } catch (error) {
       console.error("Failed to create order:", error);
 
