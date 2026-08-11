@@ -105,13 +105,13 @@ export default function OrdersList({ orders }: { orders: Order[] }) {
                       {t("shippingAddress")}
                     </p>
                     <p className="text-[14px] text-on-surface">
-                      {order.address.fullName}
+                      {order.address?.fullName}
                       <br />
-                      {order.address.line1}
+                      {order.address?.line1}
                       <br />
-                      {order.address.city}, {order.address.postalCode}
+                      {order.address?.city}, {order.address?.postalCode}
                       <br />
-                      {order.address.country}
+                      {order.address?.country}
                     </p>
                   </div>
 
