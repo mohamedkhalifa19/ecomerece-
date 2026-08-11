@@ -6,14 +6,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 import { CartProvider } from "@/lib/cart-context";
-import { AuthProvider } from "@/lib/auth-context";
 import { WishlistProvider } from "@/lib/wishlist-context";
 
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { LanguageProvider } from "@/lib/language-context";
+import { Toaster } from "@/components/ui/sonner";
+import ConnectionStatus from "@/components/ConnectionStatus";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -53,24 +53,23 @@ export default async function RootLayout({
   setRequestLocale(locale);
 
   const messages = await getMessages();
-  console.log(locale, locale === "ar" ? "rtl" : "ltr");
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body
-        className={`${plusJakarta.variable} ${inter.variable} ${cairo.variable} antialiased ${locale === "ar" && "font-cairo"}`}
+        className={`${plusJakarta.className} ${inter.className} ${cairo.variable}  antialiased ${locale === "ar" && "font-cairo!"}`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <AuthProvider>
-            {" "}
-            <CartProvider>
-              <WishlistProvider>
-                <Header />
-                <main className={`min-h-[60vh] `}>{children}</main>
-                <Footer />
-              </WishlistProvider>
-            </CartProvider>
-            {/* </LanguageProvider> */}
-          </AuthProvider>
+          {" "}
+          <CartProvider>
+            <WishlistProvider>
+              <ConnectionStatus />
+
+              <Header />
+              <main className={`min-h-[60vh] `}>{children}</main>
+              <Footer />
+            </WishlistProvider>
+          </CartProvider>
+          <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>

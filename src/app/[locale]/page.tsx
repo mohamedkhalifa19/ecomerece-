@@ -7,7 +7,6 @@ import { getLocale, getTranslations } from "next-intl/server";
 export default async function Home() {
   const featured = products.slice(0, 4);
   const newArrivals = products.filter((p) => p.isNew);
-
   const t = await getTranslations("Home");
   const locale = await getLocale();
   const lang: "en" | "ar" = locale === "ar" ? "ar" : "en";

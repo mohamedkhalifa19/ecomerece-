@@ -3,10 +3,12 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { useCart } from "@/lib/cart-context";
 import { getProduct, formatPrice } from "@/lib/products";
+import { createOrder } from "@/lib/server-actions";
+
 import Button from "@/components/Button";
 
 function Input({
@@ -32,10 +34,23 @@ export default function CheckoutPage() {
   const t = useTranslations("Checkout");
 
   const { lines, subtotal, clearCart } = useCart();
+
   const router = useRouter();
+  const locale = useLocale();
+
+  const language: "en" | "ar" = locale === "ar" ? "ar" : "en";
 
   const [step, setStep] = useState(0);
   const [placing, setPlacing] = useState(false);
+
+  const [shippingInfo, setShippingInfo] = useState({
+    fullName: "",
+    phone: "",
+    address: "",
+    city: "",
+    postalCode: "",
+    country: "",
+  });
 
   const steps = [t("steps.shipping"), t("steps.payment"), t("steps.review")];
 
@@ -61,23 +76,83 @@ export default function CheckoutPage() {
     );
   }
 
-  function handleContinue(e: FormEvent) {
+  function updateShippingInfo(field: keyof typeof shippingInfo, value: string) {
+    setShippingInfo((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  }
+
+  async function handleContinue(e: FormEvent) {
     e.preventDefault();
 
     if (step < steps.length - 1) {
       setStep((s) => s + 1);
+
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       });
-    } else {
+
+      return;
+    }
+
+    try {
       setPlacing(true);
+
+      const items = lines.map((line) => {
+        const product = getProduct(line.productId);
+
+        if (!product) {
+          throw new Error(`Product ${line.productId} not found`);
+        }
+
+        const selectedColor = product.colors.find(
+          (color) => color.name[language] === line.color,
+        );
+
+        return {
+          productId: product.id,
+
+          name: product.name[language],
+
+          size: line.size,
+
+          color:
+            selectedColor?.name[language] ??
+            product.colors[0]?.name[language] ??
+            "",
+
+          quantity: line.quantity,
+
+          price: product.price,
+
+          image: product.images[0],
+        };
+      });
+
+      const order = await createOrder({
+        total,
+
+        address: {
+          fullName: shippingInfo.fullName,
+          phone: shippingInfo.phone,
+          line1: shippingInfo.address,
+          city: shippingInfo.city,
+          postalCode: shippingInfo.postalCode,
+          country: shippingInfo.country,
+        },
+
+        items,
+      });
 
       clearCart();
 
-      setTimeout(() => {
-        router.push("/orders?placed=1");
-      }, 900);
+      router.push(`/${locale}/orders/${order.id}?placed=1`);
+    } catch (error) {
+      console.error("Failed to create order:", error);
+
+      setPlacing(false);
     }
   }
 
@@ -87,9 +162,11 @@ export default function CheckoutPage() {
         {t("title")}
       </h1>
 
-      <div className="flex items-center gap-3 mb-10 flex-wrap ">
-        {steps.map((s, i) => (
-          <div key={s} className="flex items-center gap-3 ">
+      {/* Steps */}
+
+      <div className="flex items-center gap-3 mb-10 flex-wrap">
+        {steps.map((stepName, i) => (
+          <div key={stepName} className="flex items-center gap-3">
             <div
               className={`flex h-7 w-7 items-center justify-center rounded-full text-[12px] font-semibold ${
                 i <= step
@@ -105,7 +182,7 @@ export default function CheckoutPage() {
                 i <= step ? "text-on-surface" : "text-on-surface-variant"
               }`}
             >
-              {s}
+              {stepName}
             </span>
 
             {i < steps.length - 1 && <span className="w-8 h-px bg-hairline" />}
@@ -114,7 +191,11 @@ export default function CheckoutPage() {
       </div>
 
       <div className="grid lg:grid-cols-3 gap-12">
+        {/* FORM */}
+
         <form onSubmit={handleContinue} className="lg:col-span-2">
+          {/* SHIPPING */}
+
           {step === 0 && (
             <div className="flex flex-col gap-5">
               <h2 className="text-[18px] font-semibold text-on-surface">
@@ -122,26 +203,61 @@ export default function CheckoutPage() {
               </h2>
 
               <div className="grid sm:grid-cols-2 gap-5">
-                <Input label={t("fullName")} placeholder="Amina Farouk" />
+                <Input
+                  label={t("fullName")}
+                  placeholder="Amina Farouk"
+                  value={shippingInfo.fullName}
+                  onChange={(e) =>
+                    updateShippingInfo("fullName", e.target.value)
+                  }
+                />
 
                 <Input
                   label={t("phone")}
                   placeholder="+20 100 000 0000"
                   type="tel"
+                  value={shippingInfo.phone}
+                  onChange={(e) => updateShippingInfo("phone", e.target.value)}
                 />
               </div>
 
-              <Input label={t("address")} placeholder="14 Corniche Street" />
+              <Input
+                label={t("address")}
+                placeholder="14 Corniche Street"
+                value={shippingInfo.address}
+                onChange={(e) => updateShippingInfo("address", e.target.value)}
+              />
 
               <div className="grid sm:grid-cols-3 gap-5">
-                <Input label={t("city")} placeholder="Talkha" />
+                <Input
+                  label={t("city")}
+                  placeholder="Talkha"
+                  value={shippingInfo.city}
+                  onChange={(e) => updateShippingInfo("city", e.target.value)}
+                />
 
-                <Input label={t("postalCode")} placeholder="35511" />
+                <Input
+                  label={t("postalCode")}
+                  placeholder="35511"
+                  value={shippingInfo.postalCode}
+                  onChange={(e) =>
+                    updateShippingInfo("postalCode", e.target.value)
+                  }
+                />
 
-                <Input label={t("country")} placeholder="Egypt" />
+                <Input
+                  label={t("country")}
+                  placeholder="Egypt"
+                  value={shippingInfo.country}
+                  onChange={(e) =>
+                    updateShippingInfo("country", e.target.value)
+                  }
+                />
               </div>
             </div>
           )}
+
+          {/* PAYMENT */}
 
           {step === 1 && (
             <div className="flex flex-col gap-5">
@@ -169,11 +285,35 @@ export default function CheckoutPage() {
             </div>
           )}
 
+          {/* REVIEW */}
+
           {step === 2 && (
             <div className="flex flex-col gap-5">
               <h2 className="text-[18px] font-semibold text-on-surface">
                 {t("reviewOrder")}
               </h2>
+
+              {/* Shipping information */}
+
+              <div className="rounded-md bg-surface-container-low p-5">
+                <h3 className="font-medium mb-3">{t("shippingAddress")}</h3>
+
+                <div className="text-sm text-on-surface-variant space-y-1">
+                  <p>{shippingInfo.fullName}</p>
+
+                  <p>{shippingInfo.phone}</p>
+
+                  <p>{shippingInfo.address}</p>
+
+                  <p>
+                    {shippingInfo.city}, {shippingInfo.postalCode}
+                  </p>
+
+                  <p>{shippingInfo.country}</p>
+                </div>
+              </div>
+
+              {/* Items */}
 
               {lines.map((line) => {
                 const product = getProduct(line.productId);
@@ -193,12 +333,12 @@ export default function CheckoutPage() {
 
                     <div className="flex-1">
                       <p className="text-[14px] font-medium">
-                        {product.name["ar"]}
+                        {product.name[language]}
                       </p>
 
                       <p className="text-[13px] text-on-surface-variant">
-                        {product.colors[0].name.ar} · {t("size")} {line.size} ·{" "}
-                        {t("qty")} {line.quantity}
+                        {line.color} · {t("size")} {line.size} · {t("qty")}{" "}
+                        {line.quantity}
                       </p>
                     </div>
 
@@ -209,12 +349,15 @@ export default function CheckoutPage() {
             </div>
           )}
 
+          {/* BUTTONS */}
+
           <div className="mt-10 flex gap-4">
             {step > 0 && (
               <Button
                 type="button"
                 variant="secondary"
                 onClick={() => setStep((s) => s - 1)}
+                disabled={placing}
               >
                 {t("back")}
               </Button>
@@ -230,6 +373,8 @@ export default function CheckoutPage() {
           </div>
         </form>
 
+        {/* ORDER SUMMARY */}
+
         <div className="lg:col-span-1">
           <div className="rounded-md bg-surface-container-low p-6 sticky top-24">
             <h2 className="text-[16px] font-semibold mb-4">
@@ -238,6 +383,7 @@ export default function CheckoutPage() {
 
             <div className="flex justify-between mb-2">
               <span>{t("subtotal")}</span>
+
               <span>{formatPrice(subtotal)}</span>
             </div>
 
@@ -249,6 +395,7 @@ export default function CheckoutPage() {
 
             <div className="flex justify-between border-t pt-4 font-semibold">
               <span>{t("total")}</span>
+
               <span>{formatPrice(total)}</span>
             </div>
           </div>

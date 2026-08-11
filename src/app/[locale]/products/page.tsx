@@ -10,7 +10,6 @@ import { CategoryKey, SortKey } from "@/lib/types";
 import { motion, AnimatePresence } from "framer-motion";
 
 const sortOptions: SortKey[] = [
-  { value: "featured", label: "featured" },
   { value: "price-asc", label: "priceAsc" },
   { value: "price-desc", label: "priceDesc" },
   { value: "name", label: "name" },

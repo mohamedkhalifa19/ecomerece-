@@ -1,3 +1,5 @@
+import { Prisma } from "@/generated/prisma";
+
 export type LocalizedText = {
   en: string;
   ar: string;
@@ -53,7 +55,6 @@ export type Address = {
   country: string;
   phone: string;
 };
-
 export type Order = {
   id: string;
   date: string;
@@ -68,10 +69,42 @@ export type Order = {
     image: string;
   }[];
   total: number;
-  address: Address;
+  address: Address | null;
 };
+export type PrismaOrderWithRelations = Prisma.OrderGetPayload<{
+  include: {
+    items: true;
+    address: true;
+  };
+}>;
 
 export type User = {
+  id: string;
   name: string;
   email: string;
+  address: string;
+  date: string;
 };
+
+export type UserMetadata = {
+  name?: string;
+  full_name?: string;
+  address?: string;
+  date?: string;
+};
+export type LoginError =
+  | "invalidLoginCredentials"
+  | "emailNotConfirmed"
+  | "tooManyRequests"
+  | "unableToLogin"
+  | "emailNotFound";
+export type RegisterError =
+  | "emailAlreadyRegistered"
+  | "invalidEmail"
+  | "weakPassword"
+  | "emailRateLimitExceeded"
+  | "passwordTooShort"
+  | "invalidCredentials"
+  | "userAlreadyExists"
+  | "networkError"
+  | "unableToCreateAccount";
