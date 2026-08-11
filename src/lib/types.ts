@@ -1,4 +1,4 @@
-import { Prisma } from "@/generated/prisma";
+import { Prisma } from "@/generated/prisma/client";
 
 export type LocalizedText = {
   en: string;
@@ -72,6 +72,12 @@ export type Order = {
   total: number;
   address: Address | null;
 };
+export type PrismaOrderWithRelations = Prisma.OrderGetPayload<{
+  include: {
+    items: true;
+    address: true;
+  };
+}>;
 
 export type User = {
   id: string;

@@ -1,5 +1,4 @@
-import { Prisma } from "@/generated/prisma";
-import { Item, Order } from "./types";
+import { Item, Order, PrismaOrderWithRelations } from "./types";
 
 export function formatDate(date: string, locale: "en" | "ar"): string {
   const months = {
@@ -37,12 +36,7 @@ export function formatDate(date: string, locale: "en" | "ar"): string {
 
   return `${d.getUTCDate()} ${months[locale][d.getUTCMonth()]}`;
 }
-export type PrismaOrderWithRelations = Prisma.OrderGetPayload<{
-  include: {
-    items: true;
-    address: true;
-  };
-}>;
+
 export const formattedOrders = (
   orders: PrismaOrderWithRelations[],
 ): Order[] => {
