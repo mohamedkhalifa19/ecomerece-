@@ -33,14 +33,14 @@ export async function register(formData: FormData) {
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
+  const confirmPassword = String(formData.get("confirmPassword") ?? "");
   const address = String(formData.get("address") ?? "").trim();
 
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !confirmPassword) {
     throw new Error("Please fill in all required fields.");
   }
 
   const locale = await getLocale();
-  const redirectUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/verify-email`;
 
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -233,7 +233,7 @@ export async function createOrder(data: CreateOrderData) {
       },
 
       items: {
-        create: data.items.map((item:Item) => ({
+        create: data.items.map((item: Item) => ({
           productId: item.productId,
           name: item.name,
           size: item.size,

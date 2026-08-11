@@ -5,13 +5,26 @@ import Field from "./Feild";
 import { useLocale, useTranslations } from "next-intl";
 import Login from "./Login";
 import { toast } from "sonner";
+import { useState } from "react";
 
 function Register() {
   const t = useTranslations("Login");
   const t2 = useTranslations("auth");
+  const t3 = useTranslations("ResetPassword");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [error, setError] = useState("");
   const locale = useLocale();
   const handleRegister = async (formData: FormData) => {
+    if (
+      password.trim().toLowerCase() !== confirmPassword.trim().toLowerCase()
+    ) {
+      setError(t3("passwordsDoNotMatch"));
+      return;
+    }
     const { requiresEmailConfirmation } = await register(formData);
+
     if (requiresEmailConfirmation) {
       toast(
         <h1
@@ -41,6 +54,8 @@ function Register() {
         label={t("fields.password")}
         name="password"
         type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         placeholder={t("fields.passwordPlaceholder")}
         minLength={4}
       />
@@ -49,9 +64,12 @@ function Register() {
         label={t("fields.confirmPassword")}
         name="confirmPassword"
         type="password"
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
         placeholder={t("fields.confirmPasswordPlaceholder")}
         minLength={4}
       />
+      {error && <p className="text-sm text-red-600">{error}</p>}
 
       <Field
         label={t("fields.address")}
