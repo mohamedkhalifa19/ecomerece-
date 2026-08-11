@@ -24,7 +24,11 @@ function AccountBtn({ setMenuOpen, user }: IProps) {
         aria-label={t("account")}
         className="hidden text-[14px] text-on-surface-variant transition-colors hover:text-on-surface sm:block"
       >
-        {user ? user.name.split(" ")[0] : <User2 width={20} height={20} />}
+        {user ? (
+          user.name && user.name.split(" ")[0]
+        ) : (
+          <User2 width={20} height={20} />
+        )}
       </Link>
     </>
   );
