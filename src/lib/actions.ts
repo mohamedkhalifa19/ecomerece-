@@ -1,4 +1,5 @@
-import { Item, Order, PrismaOrderWithRelations } from "./types";
+import { Prisma } from "@/generated/prisma";
+import { Item, Order } from "./types";
 
 export function formatDate(date: string, locale: "en" | "ar"): string {
   const months = {
@@ -36,6 +37,12 @@ export function formatDate(date: string, locale: "en" | "ar"): string {
 
   return `${d.getUTCDate()} ${months[locale][d.getUTCMonth()]}`;
 }
+export type PrismaOrderWithRelations = Prisma.OrderGetPayload<{
+  include: {
+    items: true;
+    address: true;
+  };
+}>;
 export const formattedOrders = (
   orders: PrismaOrderWithRelations[],
 ): Order[] => {
@@ -44,7 +51,7 @@ export const formattedOrders = (
     date: order.createdAt.toISOString(),
     status: order.status,
 
-    items: order.items.map((item:Item) => ({
+    items: order.items.map((item: Item) => ({
       productId: item.productId,
       name: item.name,
       size: item.size,
