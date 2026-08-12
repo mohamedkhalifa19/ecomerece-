@@ -41,6 +41,7 @@ export async function register(formData: FormData) {
   }
 
   const locale = await getLocale();
+  const exists = await userExists(email);
 
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -52,7 +53,6 @@ export async function register(formData: FormData) {
       },
     },
   });
-  const exists = await userExists(email);
 
   if (exists) {
     return {
