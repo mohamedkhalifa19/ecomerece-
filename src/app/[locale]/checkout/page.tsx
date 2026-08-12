@@ -1,15 +1,16 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
+import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
 import { useCart } from "@/lib/cart-context";
 import { getProduct, formatPrice } from "@/lib/products";
-import { createOrder } from "@/lib/server-actions";
+import { createOrder, getCurrentUser } from "@/lib/server-actions";
 
 import Button from "@/components/Button";
+import { User } from "@/lib/types";
 
 function Input({
   label,
@@ -31,6 +32,13 @@ function Input({
 }
 
 export default function CheckoutPage() {
+  const [user, setUser] = useState<null | User>(null);
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await getCurrentUser();
+      setUser(user);
+    };
+  }, []);
   const t = useTranslations("Checkout");
 
   const { lines, subtotal, clearCart } = useCart();
@@ -154,7 +162,7 @@ export default function CheckoutPage() {
       setPlacing(false);
     }
   }
-
+  if (!user) redirect("/account");
   return (
     <div className="container-editorial py-10 md:py-14">
       <h1 className="text-[32px] md:text-[40px] font-semibold tracking-[-0.01em] text-on-surface mb-4">
